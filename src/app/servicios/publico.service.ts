@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MensajeDTO } from '../dto/autenticacion/mensaje-dto';
 import { Observable } from 'rxjs';
-import { FiltroEventoDTO } from '../dto/evento/filtro-evento-dto';
+import { EventoFiltradoDTO } from '../dto/evento/evento-filtrado-dto';
 import { Evento } from '../models/Evento';
 
 @Injectable({
@@ -11,7 +11,7 @@ import { Evento } from '../models/Evento';
 export class PublicoService {
 
 
- private publicoURL = "http://localhost:8081/api/publico";
+ private publicoURL = "https://panaca-backend-erick.onrender.com/api/publico";
 
 
  constructor(private http: HttpClient) { }
@@ -19,7 +19,7 @@ export class PublicoService {
   //_______________________________ METODOS EVENTO _____________________________________________
 
 
- public filtrarEventos(filtroEventoDTO: FiltroEventoDTO): Observable<MensajeDTO> {
+ public filtrarEventos(filtroEventoDTO: EventoFiltradoDTO): Observable<MensajeDTO> {
    return this.http.post<MensajeDTO>(`${this.publicoURL}/filtrar-eventos`, filtroEventoDTO);
  }
 
