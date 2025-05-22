@@ -10,24 +10,30 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 
 
+
 @Component({
   selector: 'app-cambio-contrasena',
   standalone: true,
-  imports: [ FontAwesomeModule, RouterModule, ReactiveFormsModule ],
+  imports: [FontAwesomeModule, RouterModule, ReactiveFormsModule],
   templateUrl: './cambio-contrasena.component.html',
   styleUrl: './cambio-contrasena.component.css'
 })
 export class CambioContrasenaComponent {
-
   step = 1;
   showPassword = false;
   activeIcon = 'fa-eye';
   validatorFormEmail!: FormGroup;
   validatorFormContrase!: FormGroup;
 
-  constructor(@Inject(DOCUMENT ) private document: Document, private formBuilder: FormBuilder, 
-              private authService: AuthService, private router: Router )
-  {
+  // Guarda aquí el ID del usuario al pedir el código
+  private idUsuario!: string;
+
+  constructor(
+    @Inject(DOCUMENT) private document: Document,
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.crearFormulario();
   }
 
@@ -36,7 +42,9 @@ export class CambioContrasenaComponent {
   }
 
   previousStep() {
-    if (this.step > 1) this.step--;
+    if (this.step > 1) {
+      this.step--;
+    }
   }
 
   get codeArray() {
@@ -44,64 +52,70 @@ export class CambioContrasenaComponent {
   }
 
   private crearFormulario() {
+    this.validatorFormEmail = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]]
+    });
 
-    this.validatorFormEmail = this.formBuilder.group(
-      {
-        email: ['', [Validators.required, Validators.email]],     
-      },
-    );
     this.validatorFormContrase = this.formBuilder.group(
       {
         code: this.formBuilder.array(
-          Array(5).fill('').map(() => this.formBuilder.control('', [Validators.required]))
+          Array(5)
+            .fill('')
+            .map(() => this.formBuilder.control('', [Validators.required]))
         ),
         password: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(7)]],
         confirmaPassword: ['', [Validators.required]]
       },
-      { 
+      {
         validators: [this.passwordsMatchValidator]
       } as AbstractControlOptions
     );
   }
 
   public EmailContra() {
-    const codigoContraseniaDTO = this.validatorFormEmail.value as CodigoContraseniaDTO;
+    const dto = this.validatorFormEmail.value as CodigoContraseniaDTO;
 
-    this.authService.enviarCodigoRecuperacion(codigoContraseniaDTO).subscribe({
+    this.authService.enviarCodigoRecuperacion(dto).subscribe({
       next: (data) => {
+        // Suponemos que data.respuesta contiene el idUsuario
+        this.idUsuario = data.respuesta;
+
         Swal.fire({
           title: 'Email enviado',
-          text: 'Por favor, revisa tu correo e ingresa el codigo enviado',
+          text: 'Por favor, revisa tu correo e ingresa el código enviado',
           icon: 'success',
           confirmButtonText: 'Aceptar'
         }).then((result) => {
           if (result.isConfirmed) {
             this.nextStep();
           }
-        })
+        });
       },
       error: (error) => {
-        console.log(error),
+        console.error(error);
         Swal.fire({
           title: 'Error',
           text: 'Por favor, revisa el correo ingresado',
           icon: 'error',
           confirmButtonText: 'Aceptar'
-        })
+        });
       }
     });
   }
 
   public CodigoContra() {
-    
-    const codigoCompleto = this.codeArray.controls.map(control => control.value).join(''); 
+    const codigoCompleto = this.codeArray.controls
+      .map((c) => c.value)
+      .join('');
 
-    const cambiarPasswordDTO: CambiarPasswordDTO = { 
+    const cambiarPasswordDTO: CambiarPasswordDTO = {
+      idUsuario: this.idUsuario,
+      passwordAnterior: '',                   // O reemplaza con la contraseña anterior si la solicitas
       codigoVerificacion: codigoCompleto,
-      passwordNueva: this.validatorFormContrase.get('password')?.value || '',
+      passwordNueva: this.validatorFormContrase.get('password')?.value || ''
     };
 
-    console.log(cambiarPasswordDTO.codigoVerificacion, "codigo");
+    console.log('DTO a enviar:', cambiarPasswordDTO);
 
     this.authService.cambiarPassword(cambiarPasswordDTO).subscribe({
       next: (data) => {
@@ -111,40 +125,35 @@ export class CambioContrasenaComponent {
           icon: 'success',
           confirmButtonText: 'Aceptar'
         }).then((result) => {
-          /* Read more about isConfirmed, isDenied below */
           if (result.isConfirmed) {
-           this.router.navigate(["/login"]);
+            this.router.navigate(['/login']);
           }
-        })
+        });
       },
       error: (error) => {
-        console.log(error),
+        console.error(error);
         Swal.fire({
           title: 'Error',
-          text: 'Por favor, revisa el codigo ingresado',
+          text: 'Por favor, revisa el código ingresado',
           icon: 'error',
           confirmButtonText: 'Aceptar'
         }).then((result) => {
-          /* Read more about isConfirmed, isDenied below */
           if (result.isDenied) {
-            this.previousStep
+            this.previousStep();
           }
-        })
+        });
       }
     });
   }
 
   togglePasswordVisibility() {
-    this.showPassword =!this.showPassword;
-    this.activeIcon = this.activeIcon === 'fa-eye'? 'fa-eye-slash' : 'fa-eye'; // Cambia el icono activo
+    this.showPassword = !this.showPassword;
+    this.activeIcon = this.activeIcon === 'fa-eye' ? 'fa-eye-slash' : 'fa-eye';
   }
 
   passwordsMatchValidator(formGroup: FormGroup) {
     const password = formGroup.get('password')?.value;
     const confirmaPassword = formGroup.get('confirmaPassword')?.value;
-   
-   
-    // Si las contraseñas no coinciden, devuelve un error, de lo contrario, null
-    return password == confirmaPassword ? null : { passwordsMismatch: true };
-  }   
+    return password === confirmaPassword ? null : { passwordsMismatch: true };
+  }
 }
