@@ -1,0 +1,19 @@
+<div class="events-header">
+  <h2 class="title">Pasadias disponibles</h2>
+
+</div>
+<div class="card-container">
+  @for (evento of eventos; track $index) {
+  <div class="event-card" routerLink="/evento">
+    <img [src]="evento.urlImagenPortada" alt="Imagen del evento" class="event-image">
+    <div class="event-content">
+      <h3 class="event-title">{{evento.nombre}}</h3>
+      <div class="event-info">
+        <span class="event-type">{{evento.tipoEvento}}</span>
+        <span class="event-location">{{evento.ciudad}}</span>
+      </div>
+      <div class="event-date">{{evento.fecha}}</div>
+    </div>
+  </div>
+  }
+</div>  

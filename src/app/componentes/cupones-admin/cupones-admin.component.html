@@ -1,0 +1,58 @@
+<div class="coupon-list-container">
+  <!-- Cupones Disponibles -->
+  <div class="section-title" style="color: black;">
+    <h2>Cupones Disponibles</h2>
+  </div>
+  <div class="card-container">
+    <div class="coupon-card" *ngFor="let coupon of cuponesDisponibles">
+      <div class="coupon-content">
+        <h3 class="coupon-title">{{ coupon.nombre }}</h3>
+        <div class="coupon-info">
+          <span class="coupon-code">{{ coupon.codigo }}</span>
+          <span class="coupon-discount">{{ coupon.descuento }}% de descuento</span>
+        </div>
+        <div class="coupon-expiration">Expira el {{ coupon.fechaVencimiento | date }}</div>
+      </div>
+    </div>
+  </div>
+
+<!-- Paginación de Cupones Disponibles -->
+<div class="pagination-container">
+  <button (click)="cambiarPaginaDisponibles(-1)" [disabled]="paginaActualDisponibles === 0" class="pagination-button">
+    <i class="fa-solid fa-arrow-left"></i>
+  </button>
+  <span class="pagination-text">{{ paginaActualDisponibles + 1 }}</span> <!-- Mostrar la página como 1 en vez de 0 -->
+  <button (click)="cambiarPaginaDisponibles(1)" [disabled]="paginaActualDisponibles === totalPaginasDisponibles - 1" class="pagination-button">
+    <i class="fa-solid fa-arrow-right"></i>
+  </button>
+</div>
+
+  <!-- Cupones No Disponibles -->
+  <div class="section-title" style="color: black;">
+    <h2>Cupones No Disponibles</h2>
+  </div>
+  <div class="card-container">
+    <div class="coupon-card" *ngFor="let coupon of cuponesNoDisponibles">
+      <div class="coupon-content">
+        <h3 class="coupon-title">{{ coupon.nombre }}</h3>
+        <div class="coupon-info">
+          <span class="coupon-code">{{ coupon.codigo }}</span>
+          <span class="coupon-discount">{{ coupon.descuento }}% de descuento</span>
+        </div>
+        <div class="coupon-expiration">Expirado el {{ coupon.fechaVencimiento | date }}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Paginación de Cupones No Disponibles -->
+<!-- Paginación de Cupones No Disponibles -->
+<div class="pagination-container">
+  <button (click)="cambiarPaginaNoDisponibles(-1)" [disabled]="paginaActualNoDisponibles === 0" class="pagination-button">
+    <i class="fa-solid fa-arrow-left"></i>
+  </button>
+  <span class="pagination-text">{{ paginaActualNoDisponibles + 1 }}</span> <!-- Mostrar la página como 1 en vez de 0 -->
+  <button (click)="cambiarPaginaNoDisponibles(1)" [disabled]="paginaActualNoDisponibles === totalPaginasNoDisponibles - 1" class="pagination-button">
+    <i class="fa-solid fa-arrow-right"></i>
+  </button>
+</div>
+</div>

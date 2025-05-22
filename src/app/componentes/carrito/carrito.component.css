@@ -1,0 +1,202 @@
+  /*____________________________________FILTROS________________________________________*/
+  .events-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-image: url('../../../assets/images/fondoFiltro.jpeg');
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    border-radius: 5px;
+    height: 150px; /* Ajusta según necesites */
+  }
+  
+  .title {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: black;
+    margin: 0; /* Quita márgenes para centrar mejor */
+  }
+  
+  .filters {
+    text-align: right;
+  }
+  
+  .filter-title {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: black;
+    margin-bottom: 8px;
+  }
+  
+  .filter-group {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .filter-dropdown {
+    padding: 8px;
+    font-size: 0.9em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+  }
+    
+  /*____________________________________FILTROS________________________________________*/
+
+.cart-container {
+  padding: 20px;
+}
+
+.cart-container-interno {
+  display: flex;
+}
+
+.event-container1-wrapper {
+  width: calc(70% - 20px); /* Asegura que se ajuste al contenedor principal */
+  height: 100%;
+}
+
+.event-container1 {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1.5%; /* Espacio entre eventos */
+  margin-right: 1.5%; /* Espacio entre eventos */
+  border: 1px solid #ccc;
+  padding: 20px 0;
+  border-radius: 8px; /* Esquinas redondeadas */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+}
+
+.event-container2 {
+  text-align: center; /* Centra el texto */
+
+  background-color: #007bff; /* Fondo azul */
+  color: white; /* Texto en blanco */
+  padding: 20px;
+  border-radius: 8px; /* Esquinas redondeadas */
+  width: calc(32% - 20px);
+  margin-bottom: 1.5%; /* Espacio entre eventos */
+  height: 100%;
+}
+
+.event-image img {
+  width: 206px; /* Ancho fijo */
+  height: 206px; /* Alto fijo */
+  object-fit: cover; /* Asegura que la imagen mantenga la proporción */
+  border-radius: 8px; /* Esquinas redondeadas */
+}
+
+.event-info1 {
+  display: flex;
+  align-content: space-between;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.event-info2 {
+  display: flex;
+  flex-direction: column; /* Mantiene los elementos en columna */
+  color: black;
+}
+
+.event-item {
+  display: flex;
+  flex-direction: column; /* Mantiene la ubicación y la fecha en columna */
+  margin-bottom: 10px; /* Espacio entre cada evento */
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+  padding: 8px;
+}
+
+.x {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.event-buttoms {
+  display: flex;
+  align-content: space-between;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+#basura {
+  display: flex;
+  color: #ff0000; /* Color rojo para el icono de papelera */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el icono */
+}
+
+.centrado {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.modify-button {
+  background-color: transparent;
+  border: none;
+  color: #007bff; /* Color azul para el botón */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .event-container1 {
+    flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+    align-items: center; /* Centra los elementos */
+    padding: 1%;
+    width: calc(100% - 20px);
+  }
+
+  .event-container2 {
+    flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+    align-items: center; /* Centra los elementos */
+    padding: 1%;
+    width: calc(100% - 20px);
+  }
+
+  .event-actions {
+    align-items: center; /* Centra el contenido en acciones */
+  }
+
+  .event-buttoms {
+    flex-direction: row-reverse;
+  }
+
+  .cart-container-interno {
+    flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+  }
+
+}
+
+.button {
+  display: inline-block; /* Asegura que el botón sea tratado como un bloque en línea */
+  width: 180px;
+  height: 40px;
+  background-image: linear-gradient(rgb(214, 202, 254), rgb(158, 129, 254));
+  border: none;
+  border-radius: 50px;
+  color: rgb(255, 255, 255);
+  gap: 5px;
+  cursor: pointer;
+  box-shadow: 1px 3px 0px rgb(139, 113, 255);
+  transition-duration: .2s;
+}
+
+.cartIcon {
+  width: 14px;
+  height: fit-content;
+}
+
+.cartIcon path {
+  fill: white;
+}
+
+.button:active {
+  transform: translate(2px ,0px);
+  box-shadow: 0px 1px 0px rgb(139, 113, 255);
+  padding-bottom: 1px;
+}

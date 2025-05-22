@@ -1,0 +1,7 @@
+.home-background {
+    background-image: url('../assets/images/Fondo.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    background-attachment: fixed; /* Fija la imagen de fondo */
+}

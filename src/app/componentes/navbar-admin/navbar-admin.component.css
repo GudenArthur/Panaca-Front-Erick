@@ -1,0 +1,5 @@
+/* Estilo para el navbar y las opciones del dropdown */
+.navbar-nav .nav-link:hover, .dropdown-item:hover {
+    background-color: #372248; /* Fondo ligeramente degradado */
+    color: white; /* El color del texto se mantiene blanco */
+}

@@ -1,0 +1,118 @@
+<div class="crear-evento">
+    <div class="container pt-5 pb-5">
+      <div class="border rounded p-3 shadow" style="background-color: #171123; max-width: 950px; margin: auto;">
+        <h2 class="text-center mb-3" style="color: white;">Editar evento</h2>
+        <i class="fa-solid fa-circle-edit mb-3 d-flex justify-content-center align-items-center" style="font-size: 48px; color: #ffffff;"></i>
+        <form [formGroup]="editarEventoForm" (ngSubmit)="editarEvento()" novalidate>
+          
+          <hr class="mb-2" style="border: 1px solid #ffffff; width: 80%; margin: auto;">
+          
+          <!-- Fila para Nombre y Descripción -->
+          <div class="row mb-2">
+            <div class="col">
+              <label for="nombreEvento" class="form-label" style="color: #ffffff;">Nombre evento:</label>
+              <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre evento" aria-label="Nombre evento" style="border: 1px solid #007BFF;">
+            </div>
+            <div class="col">
+              <label for="descripcion" class="form-label" style="color: #ffffff;">Descripción:</label>
+              <textarea type="text" class="form-control" formControlName="descripcion" placeholder="Descripción" aria-label="Descripción" style="border: 1px solid #ffffff;"></textarea>
+            </div>
+          </div>
+  
+          <!-- Fila para Tipo de Evento y Dirección -->
+          <div class="row mb-2">
+            <div class="col">
+              <label for="tipoEvento" class="form-label" style="color: #ffffff;">Tipo evento:</label>
+              <select class="form-control" formControlName="tipoEvento" placeholder="Tipo Evento" aria-label="Tipo Evento" style="border: 1px solid #ffffff;">
+                <option value="">Seleccione un tipo</option>
+                <option *ngFor="let item of tiposDeEvento" [value]="item">{{ item }}</option>
+              </select>
+            </div>
+            <div class="col">
+              <label for="direccionEvento" class="form-label" style="color: #ffffff;">Dirección:</label>
+              <input type="text" class="form-control" formControlName="direccion" placeholder="Dirección" aria-label="Dirección" style="border: 1px solid #ffffff;">
+            </div>
+          </div>
+  
+          <!-- Fila para Ciudad -->
+          <div class="row mb-2">
+            <div class="col-6">   <!-- La ciudad ocupa solo la mitad -->
+              <label for="ciudadEvento" class="form-label" style="color: #ffffff;">Ciudad evento:</label>
+              <input type="text" class="form-control" formControlName="ciudad" placeholder="Ciudad" aria-label="Ciudad evento" style="border: 1px solid #007BFF;">
+            </div>
+          </div>
+  
+          <!-- Fila para Imagen Portada y Localidades -->
+          <div class="row mb-2">
+            <div class="col" style="margin-bottom: 15px;">
+              <label for="imagenPortada" class="form-label" style="color: #ffffff;">Imagen Portada:</label>
+              <input type="file" id="imagenPortada" (change)="onFileChange($event, 'portada')" style="display: none;" />
+              <label for="imagenPortada" class="custom-file-label"><i class="fa-solid fa-images"></i> Seleccionar imagen de portada</label>
+              <!-- Vista previa de la imagen seleccionada -->
+              <div *ngIf="imagenPortadaPreview" class="mt-2">
+                <img [src]="imagenPortadaPreview" alt="Vista previa de la imagen portada" class="img-fluid rounded">
+              </div>
+            </div>
+            <div class="col" style="margin-bottom: 10px;">
+              <label for="imagenLocalidades" class="form-label" style="color: #ffffff;">Imagen Localidades:</label>
+              <input type="file" id="imagenLocalidades" (change)="onFileChange($event, 'localidades')" style="display: none;" />
+              <label for="imagenLocalidades" class="custom-file-label"><i class="fa-solid fa-images"></i> Seleccionar imagen de localidades</label>
+              <!-- Vista previa de la imagen seleccionada -->
+              <div *ngIf="imagenLocalidadesPreview" class="mt-2">
+                <img [src]="imagenLocalidadesPreview" alt="Vista previa de la imagen localidades" class="img-fluid rounded">
+              </div>
+            </div>
+          </div>
+  
+          <!-- Sección de Localidades -->
+          <div formArrayName="localidades" *ngFor="let localidad of localidades.controls; let i = index">
+            <div [formGroupName]="i" class="row mb-2">
+              <div class="col">
+                <label for="nombreLocalidad" class="form-label" style="color: #ffffff;">Nombre Localidad:</label>
+                <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre de localidad" style="border: 1px solid #007BFF;">
+              </div>
+              <div class="col">
+                <label for="precioLocalidad" class="form-label" style="color: #ffffff;">Precio Localidad:</label>
+                <input type="number" class="form-control" formControlName="precio" placeholder="Precio" style="border: 1px solid #007BFF;">
+              </div>
+              <div class="col">
+                <label for="capacidadMaxima" class="form-label" style="color: #ffffff;">Capacidad Maxima:</label>
+                <input type="number" class="form-control" formControlName="capacidadMaxima" placeholder="Capacidad" style="border: 1px solid #007BFF;">
+              </div>
+              <div class="col-auto">
+                <button type="button" class="btn btn-danger" (click)="removeLocalidad(i)">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Botón para Agregar Localidad -->
+          <div class="row mb-3">
+            <div class="col text-center">
+              <button type="button" class="btn btn-secondary" (click)="addLocalidad()">
+                <i class="fa-solid fa-plus"></i> Agregar Localidad
+              </button>
+            </div>
+          </div>
+  
+          <!-- Botón de Enviar -->
+          <div class="row">
+            <div class="col text-center">
+                <button type="button" class="btn btn-danger" style="position: relative; right: 250px;">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+              <button type="submit" class="btn btn-primary" style="width: 25%; background-color: #B9E8CA; color: black; border-style: none; position: relative; left: 35px;">
+                <i class="fa-solid fa-save"></i> Guardar cambios
+              </button>
+              <button (click)="goBack()" class="btn btn-secondary" style="position: relative; left: 200px;">
+                <i class="fas fa-arrow-left"></i> Regresar
+              </button>
+            </div>
+          </div>
+  
+        </form>
+      </div>
+    </div>
+  </div>
+  

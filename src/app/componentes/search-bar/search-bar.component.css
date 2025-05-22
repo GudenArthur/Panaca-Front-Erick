@@ -1,0 +1,79 @@
+.search-bar {
+  padding: 10px;
+  background-color: #dce9f2;
+  box-shadow: 0 2px 4px 4px rgba(0, 0, 0.9, 0.1);
+  z-index: 2;
+}
+
+.navbar {
+  display: flex; /* Alinea los items horizontalmente */
+  justify-content: space-between;
+}
+
+.primera{
+  display: flex; /* Alinea los items horizontalmente */
+  justify-content: center;
+  align-items: center;
+  margin: -0.2%;
+}
+
+.nav-list {
+  list-style-type: none; /* Quita las viñetas */
+  padding: 0; /* Elimina el padding por defecto */
+  margin: 0; /* Elimina el margen por defecto */
+  display: flex; /* Alinea los items horizontalmente */
+  justify-content: flex-end
+}
+
+.nav-item {
+  flex: 1; /* Cada elemento ocupa un espacio igual */
+  text-align: center; /* Centra el texto dentro del elemento */
+  margin: 0 5%; 
+}
+
+.texto{
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+  display: block; /* Hace que el enlace ocupe todo el ancho del li */
+  text-decoration: none; /* Quita el subrayado */
+  color: black; /* Color del enlace */
+}
+
+.nav-item a {
+  text-decoration: none; /* Quita el subrayado de los enlaces */
+  color: black; /* Cambia el color del enlace */
+}
+
+/*_______________________________Buscador _______________________________________*/
+
+.search-container {
+  position: relative;
+  display: inline-block;
+}
+
+.search-input {
+  width: 500px;
+  box-sizing: border-box; /* Asegura que el padding no rompa el diseño */
+  border-radius: 25px;
+  box-shadow: 0 2px 4px rgba(0, 0.1, 0.2, 0.3);
+  background: rgba(255, 255, 255, 0.473);
+  padding: 9px 5px;
+  color: black;
+  border: 1px solid black;
+  outline: none;
+}
+
+
+.search-button {
+  position: absolute;
+  right: 10px; /* Ajusta la posición del botón a la derecha */
+  top: 50%;
+  transform: translateY(-50%); /* Centra verticalmente el botón */
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.search-button:hover {
+  color: #555; /* Estilo de hover para el botón */
+}

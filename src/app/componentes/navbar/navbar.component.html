@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light d-flex">
+  <div class="container-fluid d-flex justify-content-between">
+       <div class="d-flex align-items-center">
+        <a routerLink="" class="d-inline-flex link-body-emphasis text-decoration-none align-items-center">
+          <i class="fa-solid fa-music"></i>
+          <span class="fs-4 ms-3 me-3">{{title}}</span>
+        </a>
+       </div>
+       <div>
+           <div class="collapse navbar-collapse">
+              <ul class="navbar-nav ml-auto">
+                @if (logueado) {
+                  <a routerLink="carrito" class="d-inline-flex link-body-emphasis text-decoration-none align-items-center"><i class="fa fa-shopping-cart" aria-hidden="true"></i> </a>
+                  <!-- Si el usuario está autenticado, muestra el saludo -->
+                  <li class="nav-item custom-nav-item-green" id="navbarNav">
+                    <button class="nav-link login-style" id="dropdownBtn" (click)="toggleMenu()">Hola</button>
+                    <ul class="dropdown-menu" id="dropdownMenu" [ngClass]="{'show': mostrarMenu}">
+                      <li>
+                        <button class="nav-link salirr" (click)="logout()">Salir</button>
+                        <!-- <button class="nav-link salirr" (click)="editarPerfil()">Editar Perfil</button> -->
+                      </li> 
+                    </ul>                    
+                  </li>                  
+                }@else {
+                  <!-- Si el usuario NO está autenticado, muestra el botón de login -->
+                  <li class="nav-item custom-nav-item-green" id="navbarNav">
+                    <a class="nav-link login-style" routerLink="login">Login</a>
+                  </li>
+                }
+              </ul>          
+            </div>
+       </div>
+  </div>
+</nav>   

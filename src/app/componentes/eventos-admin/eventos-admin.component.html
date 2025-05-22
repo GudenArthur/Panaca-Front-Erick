@@ -1,0 +1,59 @@
+<div class="event-list-container">
+    <!-- Eventos Disponibles -->
+    <div class="section-title" style="color: black;">
+        <h2>Eventos Disponibles</h2>
+    </div>
+    <div class="card-container">
+        <div class="event-card" *ngFor="let event of listaEventosDisponibles" routerLink="/info-evento-admin/{{event.id}}">
+            <img [src]="event.urlImagenPortada" alt="Imagen del evento" class="event-image">
+            <div class="event-content">
+                <h3 class="event-title">{{ event.nombre }}</h3>
+                <div class="event-info">
+                    <span class="event-type">{{ event.tipoEvento }}</span>
+                    <span class="event-location">{{ event.ciudad }}</span>
+                </div>
+                <div class="event-date">{{ event.fecha }}</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Paginación de Eventos Disponibles -->
+    <div class="pagination-container">
+        <button (click)="cambiarPaginaDisponibles(-1)" [disabled]="paginaActualDisponibles === 0" class="pagination-button">
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <span class="pagination-text">{{ paginaActualDisponibles + 1 }}</span>
+        <button (click)="cambiarPaginaDisponibles(1)" [disabled]="paginaActualDisponibles === totalPaginasDisponibles - 1" class="pagination-button">
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
+    </div>
+
+    <!-- Eventos No Disponibles -->
+    <div class="section-title" style="color: black;">
+        <h2>Eventos No Disponibles</h2>
+    </div>
+    <div class="card-container">
+        <div class="event-card" *ngFor="let event of listaEventosNoDisponibles" routerLink="/info-evento-admin/{{event.id}}">
+            <img [src]="event.urlImagenPortada" alt="Imagen del evento" class="event-image">
+            <div class="event-content">
+                <h3 class="event-title">{{ event.nombre }}</h3>
+                <div class="event-info">
+                    <span class="event-type">{{ event.tipoEvento }}</span>
+                    <span class="event-location">{{ event.ciudad }}</span>
+                </div>
+                <div class="event-date">{{ event.fecha }}</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Paginación de Eventos No Disponibles -->
+    <div class="pagination-container">
+        <button (click)="cambiarPaginaNoDisponibles(-1)" [disabled]="paginaActualNoDisponibles === 0" class="pagination-button">
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <span class="pagination-text">{{ paginaActualNoDisponibles + 1 }}</span>
+        <button (click)="cambiarPaginaNoDisponibles(1)" [disabled]="paginaActualNoDisponibles === totalPaginasNoDisponibles - 1" class="pagination-button">
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
+    </div>
+</div>

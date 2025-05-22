@@ -1,0 +1,71 @@
+<div class="crear-cupon">
+    <div class="container pt-5 pb-5">
+        <div class="border rounded p-3 shadow" style="background-color: #171123; max-width: 750px; margin: auto;">
+            <h2 class="text-center mb-3" style="color: white;">Crear un cupón</h2>
+            <i class="fa-solid fa-ticket mb-3 d-flex justify-content-center align-items-center" style="font-size: 48px; color: #ffffff;"></i>
+            <form [formGroup]="crearCuponForm" (ngSubmit)="crearCupon()" novalidate="">
+
+                <hr class="mb-2" style="border: 1px solid #ffffff; width: 80%; margin: auto;">
+
+                <!-- Código y Nombre del Cupón -->
+                <div class="row mb-2">
+                    <div class="col">
+                      <label for="codigo" class="form-label" style="color: #ffffff;">Código del cupón:</label>
+                      <input type="text" class="form-control" formControlName="codigo" placeholder="Código" aria-label="Código" style="border: 1px solid #007BFF;">
+                    </div>
+                    <div class="col">
+                      <label for="nombre" class="form-label" style="color: #ffffff;">Nombre del cupón:</label>
+                      <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre" aria-label="Nombre" style="border: 1px solid #007BFF;">
+                    </div>
+                </div>
+
+                <!-- Porcentaje de Descuento -->
+                <div class="row mb-2">
+                    <div class="col-6">
+                      <label for="porcentajeDescuento" class="form-label" style="color: #ffffff;">Porcentaje de descuento (%):</label>
+                      <input type="number" class="form-control" formControlName="porcentajeDescuento" placeholder="Descuento" aria-label="Porcentaje de descuento" style="border: 1px solid #007BFF;">
+                    </div>
+                </div>
+
+                <!-- Fecha de Apertura y Fecha de Vencimiento -->
+                <div class="row mb-2">
+                    <div class="col">
+                      <label for="fechaApertura" class="form-label" style="color: #ffffff;">Fecha de apertura:</label>
+                      <input type="datetime-local" class="form-control" formControlName="fechaApertura" style="border: 1px solid #007BFF;">
+                    </div>
+                    <div class="col">
+                      <label for="fechaVencimiento" class="form-label" style="color: #ffffff;">Fecha de vencimiento:</label>
+                      <input type="datetime-local" class="form-control" formControlName="fechaVencimiento" style="border: 1px solid #007BFF;">
+                    </div>
+                </div>
+
+                <!-- Tipo y Estado del Cupón -->
+                <div class="row mb-2">
+                    <div class="col">
+                        <label for="tipoCupon" class="form-label" style="color: #ffffff;">Tipo de cupón:</label>
+                        <select class="form-control" formControlName="tipoCupon" style="border: 1px solid #007BFF;">
+                            <option value="">Seleccione un tipo</option>
+                            <option *ngFor="let tipo of tiposCupon" [value]="tipo">{{tipo}}</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="estadoCupon" class="form-label" style="color: #ffffff;">Estado del cupón:</label>
+                        <select class="form-control" formControlName="estadoCupon" style="border: 1px solid #007BFF;">
+                            <option value="">Seleccione un estado</option>
+                            <option *ngFor="let estado of estadosCupon" [value]="estado">{{estado}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Botón de Crear Cupón -->
+                <div class="row mt-4">
+                    <div class="col text-center">
+                      <button type="submit" class="btn btn-primary" style="width: 25%; background-color: #B9E8CA; color: black; border-style: none;">
+                        <i class="fa-solid fa-ticket"></i> Crear cupón
+                      </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

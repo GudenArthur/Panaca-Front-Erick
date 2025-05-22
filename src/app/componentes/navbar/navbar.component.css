@@ -1,0 +1,85 @@
+.navbar {
+        background-color: #ec4f4f !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0.9, 0.1);    
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+#navbarNav {
+    box-shadow: 0 2px 4px rgba(0, 0, 0.9, 0.1);
+}
+
+.custom-nav-item {
+    background-color: #f11f1f !important;
+    margin-right: 50px;
+}
+
+.custom-nav-item-green {
+    margin-left: 75px;
+    margin-right: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #e7e7e7;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+.login-style {
+    color: black;
+}
+
+.logo {
+    width: 62px;
+    height: 56px;
+}
+
+.navbar-text{
+    font-family: 'Inika';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 31px;
+    color: #c90000;
+    padding-left: 10px;
+}
+
+.container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-brand {
+    margin-right: 0 !important;
+}
+
+.dropdown-menu {
+    visibility: hidden; /* Oculta inicialmente el menú */
+    opacity: 0; /* Mantiene el espacio reservado sin contenido visible */
+    transition: visibility 0s linear 0.5s, opacity 0.5s linear; /* Transición suave */
+    position: absolute;
+    background-color: #dc0606;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(220, 11, 11, 0.2);
+    padding: 12px 16px;
+    z-index: 1;
+    border-radius: 15px;
+  }
+  
+  .show {
+    visibility: visible; /* Hace visible el menú */
+    opacity: 1; /* Hace visible el contenido del menú */
+  }
+  
+  .salirr {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+  }
+  
+  .salirr:hover {
+    background-color: #b91515; /* Cambia el fondo al pasar por encima */
+  }
