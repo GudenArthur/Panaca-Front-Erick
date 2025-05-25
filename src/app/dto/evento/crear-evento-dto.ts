@@ -1,4 +1,4 @@
-import { CrearLocalidadDTO } from "./crear-localidad-dto";
+import { CrearLocalidadDTO } from "./crear-evento-dto";
 
 export interface CrearEventoDTO {
     imagenPortada: string,

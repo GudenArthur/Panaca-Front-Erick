@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { MensajeDTO } from '../dto/autenticacion/mensaje-dto';
 import { CrearEventoDTO } from '../dto/evento/crear-evento-dto';
 import { EditarEventoDTO } from '../dto/evento/editar-evento-dto';
-import { ResponderPQRDTO } from '../dto/PQR/responder-pqrdto';
+import { ResponderPQRDTO } from '../dto/PQR/responder-pqr-dto';
 import { CrearCuponDTO } from '../dto/cupon/crear-cupon-dto';
 import { EditarCuponDTO } from '../dto/cupon/editar-cupon-dto';
 import { ItemsCuponDTO } from '../dto/cupon/items-cupon-dto';
@@ -17,7 +17,7 @@ import { Page } from '../models/Page';
 export class AdministradorService {
 
 
- private adminURL = "http://localhost:8081/api/admin";
+ private adminURL = "https://panaca-backend-erick.onrender.com/api/admin";
 
 
  constructor(private http: HttpClient) { }

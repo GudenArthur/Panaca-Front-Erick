@@ -5,7 +5,7 @@ import { CrearEventoDTO } from '../../dto/evento/crear-evento-dto';
 import Swal from 'sweetalert2';
 import { AdministradorService } from '../../servicios/administrador.service';
 import { TipoEvento } from '../../enums/TipoEvento';
-import { CrearLocalidadDTO } from '../../dto/evento/crear-localidad-dto';
+import { CrearLocalidadDTO } from '../../dto/evento/crear-evento-dto';
 
 @Component({
   selector: 'app-crear-evento',
