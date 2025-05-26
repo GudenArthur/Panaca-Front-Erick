@@ -1,4 +1,4 @@
 export interface ValidarCodigoDTO {
-    email: string,
-    codigo: string
+  correo: string;
+  codigo: string;
 }
