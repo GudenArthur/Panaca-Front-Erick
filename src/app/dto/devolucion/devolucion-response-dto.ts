@@ -1,5 +1,7 @@
 export interface DevolucionResponseDTO {
   id: string;
-  estado: string;
-  fechaProcesamiento: string;
+  nombre: string;
+  tipo: 'COMPRA' | 'DONACION';
+  estado: 'PENDIENTE' | 'APROBADA' | 'RECHAZADA';
+  fechaSolicitud: string;
 }

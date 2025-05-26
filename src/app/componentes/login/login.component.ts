@@ -1,18 +1,22 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+
 import { AuthService } from '../../servicios/auth.service';
 import { TokenService } from '../../servicios/token.service';
-import { Router } from '@angular/router';
 import { LoginRequestDTO } from '../../dto/autenticacion/login-request.dto';
 
 @Component({
   selector: 'app-login',
+  standalone: true,
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule]
 })
 export class LoginComponent {
   formularioLogin: FormGroup;
-  mensajeError: string = '';
+  error: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -29,15 +33,16 @@ export class LoginComponent {
   onSubmit(): void {
     if (this.formularioLogin.invalid) return;
 
-    const datosLogin: LoginRequestDTO = this.formularioLogin.value;
+    const dto: LoginRequestDTO = this.formularioLogin.value;
 
-    this.authService.iniciarSesion(datosLogin).subscribe({
+    this.authService.iniciarSesion(dto).subscribe({
       next: (data) => {
-        this.tokenService.login(data.respuesta); // CORREGIDO
+        this.tokenService.login(data.respuesta); // token + redirección por rol
       },
       error: (err) => {
-        this.mensajeError = err.error?.mensaje || 'Error al iniciar sesión';
+        this.error = err.error?.mensaje || 'Error al iniciar sesión';
       }
     });
   }
 }
+

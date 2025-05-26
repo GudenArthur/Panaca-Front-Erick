@@ -5,3 +5,4 @@ export interface CrearCuentaDTO {
   correo: string;
   contrasena: string;
 }
+

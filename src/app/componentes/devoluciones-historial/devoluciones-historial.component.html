@@ -1,0 +1,14 @@
+<div class="historial-container">
+  <h2>Historial de Devoluciones</h2>
+
+  <div *ngIf="devoluciones.length === 0">
+    <p>No hay devoluciones registradas.</p>
+  </div>
+
+  <div *ngFor="let dev of devoluciones" class="devolucion-card" [ngClass]="dev.estado.toLowerCase()">
+    <p><strong>{{ dev.tipo === 'DONACION' ? 'Donación' : 'Compra' }}</strong></p>
+    <p>{{ dev.nombre }}</p>
+    <p><strong>Estado:</strong> {{ dev.estado }}</p>
+    <p><strong>Fecha de solicitud:</strong> {{ dev.fechaSolicitud }}</p>
+  </div>
+</div>
