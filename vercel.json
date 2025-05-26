@@ -1,8 +1,9 @@
 {
+  "outputDirectory": "dist/panaca-front-erick",
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/"
+      "destination": "/index.html"
     }
   ]
 }
