@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/panaca-front-erick",
+            "outputPath": "dist",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -113,4 +113,5 @@
     "analytics": "3db17ee9-2594-44f3-b625-e36cfab33100"
   }
 }
+
 
