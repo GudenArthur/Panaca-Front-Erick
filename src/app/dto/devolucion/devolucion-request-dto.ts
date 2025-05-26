@@ -1,4 +1,5 @@
 export interface DevolucionRequestDTO {
-  idOrden: string;
-  motivo: string;
+  tipo: 'COMPRA' | 'DONACION';
+  nombre: string;
 }
+

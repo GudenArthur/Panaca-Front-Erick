@@ -1,0 +1,38 @@
+<div class="home-container">
+  <h1>¡Bienvenido, {{ datosUsuario.nombre }}!</h1>
+  <p><strong>Correo:</strong> {{ datosUsuario.email }}</p>
+
+  <div class="acciones">
+    <a routerLink="/eventos" class="boton">Comprar Boletas</a>
+    <a routerLink="/carrito" class="boton">Ir al Carrito</a>
+    <a routerLink="/devoluciones-historial" class="boton secundario">Ver Mis Devoluciones</a>
+  </div>
+
+  <div class="seccion-historial">
+    <h2>Historial de Compras</h2>
+
+    <div *ngIf="historial.length === 0">
+      <p>No hay compras registradas aún.</p>
+    </div>
+
+    <div *ngFor="let orden of historial" class="orden-card" [ngClass]="orden.tipo === 'DONACION' ? 'donacion' : 'compra'">
+      <p><strong>{{ orden.tipo === 'DONACION' ? 'Donación' : 'Compra de boletas' }}</strong></p>
+      <p>{{ orden.nombre }}</p>
+      <p><strong>Total:</strong> ${{ orden.total }}</p>
+      <p><strong>Fecha de compra:</strong> {{ orden.fechaCompra }}</p>
+      <p *ngIf="orden.fechaVisita"><strong>Fecha de visita:</strong> {{ orden.fechaVisita }}</p>
+
+      <button
+        *ngIf="orden.estado === 'COMPLETADO'"
+        class="boton-devolucion"
+        (click)="solicitarDevolucion(orden)">
+        Solicitar Devolución
+      </button>
+
+      <p *ngIf="orden.estado === 'DEVOLUCION_SOLICITADA'" style="color: #e67e22; font-weight: bold;">
+        Devolución solicitada
+      </p>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,17 @@
+<div class="contenedor-login">
+  <h2>INICIAR SESIÓN</h2>
+
+  <form [formGroup]="formularioLogin" (ngSubmit)="onSubmit()">
+    <label for="correo">Email</label>
+    <input id="correo" type="email" formControlName="correo" placeholder="correo@example.com" />
+
+    <label for="contrasena">Contraseña</label>
+    <input id="contrasena" type="password" formControlName="contrasena" placeholder="********" />
+
+    <div *ngIf="mensajeError" class="error">{{ mensajeError }}</div>
+
+    <button type="submit" [disabled]="formularioLogin.invalid">INICIAR SESIÓN</button>
+  </form>
+
+  <p>¿Es tu primera vez? <a routerLink="/registro">Regístrate</a></p>
+</div>

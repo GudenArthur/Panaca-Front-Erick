@@ -1,0 +1,27 @@
+.orden-card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-bottom: 15px;
+  text-align: left;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+.orden-card.compra {
+  border-left: 6px solid #9c00fe;
+}
+
+.orden-card.donacion {
+  border-left: 6px solid #27ae60;
+}
+
+.boton-devolucion {
+  padding: 6px 16px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}

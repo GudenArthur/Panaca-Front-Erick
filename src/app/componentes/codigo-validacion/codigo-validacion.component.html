@@ -1,15 +1,18 @@
 <div class="forgot-password-container">
   <div class="container">
     <h3>Verificar Código</h3>
+    <p>Revisa tu correo (<strong>{{ emailGuardado }}</strong>) e ingresa el código de validación:</p>
+
     <form [formGroup]="validatorForm" (ngSubmit)="validacionCodigo()">
       <div class="inp" formArrayName="code">
-        @for (control of codeArray.controls; track $index){
-        <input type="text" id="inp-verifi" maxlength="1" [formControlName]="$index"/>
-        }
+        <ng-container *ngFor="let control of codeArray.controls; let i = index">
+          <input type="text" id="inp-verifi" maxlength="1" [formControlName]="i" />
+        </ng-container>
       </div>
       <div class="containerBoton">
-        <button class="buttonRegistro">Verificar</button>
+        <button class="buttonRegistro" type="submit">Verificar</button>
       </div>
     </form>
   </div>
 </div>
+
