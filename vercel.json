@@ -1,9 +1,13 @@
 {
-  "outputDirectory": "dist/browser",
-  "rewrites": [
+  "version": 2,
+  "builds": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist/browser" }
     }
+  ],
+  "rewrites": [
+    { "source": "/(.*)", "destination": "./dist/index.html" }
   ]
 }
