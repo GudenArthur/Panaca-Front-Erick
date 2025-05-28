@@ -15,7 +15,7 @@
           "options": {
             "outputPath": "dist/browser",
             "index": "src/index.html",
-            "browser": "src/main.ts",
+            "main": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
@@ -61,7 +61,8 @@
                   "maximumError": "4mb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "/"
             },
             "development": {
               "optimization": false,
@@ -115,6 +116,4 @@
     "analytics": "3db17ee9-2594-44f3-b625-e36cfab33100"
   }
 }
-
-
 
